@@ -1,11 +1,16 @@
 'use client'
 
-import { Button } from "@heroui/react";
-
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <Button>Click me!</Button>
+    <div className="flex h-screen">
+<div className="w-[220px] border-r border-gray-200 bg-white">
+    sidebar content
+  </div>
+
+  <div className="flex-1 overflow-auto">
+    main content…
+  </div>
     </div>
+    
   );
 }

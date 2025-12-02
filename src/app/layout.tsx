@@ -1,21 +1,26 @@
-import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.css";
+import type { Metadata, Viewport } from "next";
+import clsx from "clsx";
+
 import { Providers } from "./providers";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
+import { siteConfig } from "@/config/site";
+import { fontSans } from "@/config/fonts";
+import HeaderMenu from "@/components/header/headermenu";
 
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 export const metadata: Metadata = {
-  title: "ERPNEXT Clone",
-  description: "Belajar nextjs dengan heroui dengan clone erpnext",
+  title: {
+    default: siteConfig.name,
+    template: "%s - ${siteConfig.name}",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
 };
 
 export default function RootLayout({
@@ -24,12 +29,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning lang="en">
+      <head />
       <body
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={clsx(
+          "min-h-screen text-foreground bg-background font-sans antialiased",
+          fontSans.variable
+        )}
       >
-        <Providers>
-          {children}
+        <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
+          <div className="relative flex flex-col h-screen">
+            <HeaderMenu />
+            <div className="container mx-auto max-w-7xl pt-5 px-6">
+              {children}
+            </div>
+          </div>
         </Providers>
       </body>
     </html>
