@@ -15,7 +15,7 @@ export default function HeaderPage() {
             className="!bg-transparent hover:!bg-transparent"
             disableRipple
           >
-            <Menu color="gray" size={19} stroke-width="2.5" />
+            <Menu color="gray" size={19} strokeWidth="2.5" />
           </Button>
         </div>
         <div className="ml-1 text-[20px] font-bold">Item</div>
