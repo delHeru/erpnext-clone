@@ -2,10 +2,10 @@
 
 import { Button } from "@heroui/react";
 import { Menu } from "lucide-react";
-import { UseSidebar } from "@/store/useSidebar";
+import { useSidebar } from "@/store/sidebarContext";
 
 export default function HeaderPage({ title }: { title: string }) {
-  const toggle = UseSidebar((s) => s.toggle);
+  const { toggle } = useSidebar();
 
   console.log("HeaderPage mounted, toggle exists?", toggle);
 

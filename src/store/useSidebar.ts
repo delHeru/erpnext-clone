@@ -11,8 +11,7 @@ export const UseSidebar = create<SidebarState>((set) => ({
   collapsed: false,
 
   toggle: () =>
-    set((state) => {
-      console.log("TOGGLE CALLED — previous:", state.collapsed);
-      return { collapsed: !state.collapsed };
+    set((s) => {
+      return { collapsed: !s.collapsed };
     }),
 }));

@@ -5,7 +5,7 @@ export default function HelpMenu(){
     return(
         <Dropdown placement="bottom-end">
             <DropdownTrigger>
-                <Button variant="light" endContent={<ChevronDownIcon size={18} color="gray" />} size="sm" className="!bg-transparent hover:!bg-transparent gap-1 text-[13px] font-light text-gray-950" disableRipple>
+                <Button variant="light" endContent={<ChevronDownIcon size={18} color="gray" />} size="sm" className="!bg-transparent hover:!bg-transparent gap-1 text-[13px] font-light text-gray-900 dark:text-gray-500" disableRipple>
                     Bantuan
                 </Button>
             </DropdownTrigger>

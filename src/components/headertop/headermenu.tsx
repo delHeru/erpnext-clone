@@ -7,11 +7,12 @@ import UserMenu from "./usermenu";
 import HelpMenu from "./helpmenu";
 import NotifMenu from "./notifmenu";
 import GlobalSearch from "./globalSearch";
+import ThemeSwitcher from "../theme-switcher";
 
 export default function HeaderMenu() {
   return (
     <Navbar
-      className="border-b border-gray-200"
+      className="border-b border-gray-200 dark:border-stone-800"
       position="sticky"
       maxWidth="xl"
       height={48}
@@ -29,6 +30,7 @@ export default function HeaderMenu() {
         </div>
         <HelpMenu />
         <UserMenu />
+        <ThemeSwitcher />
       </NavbarContent>
     </Navbar>
   );

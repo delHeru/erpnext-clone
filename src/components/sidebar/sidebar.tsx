@@ -1,27 +1,16 @@
 "use client";
 
-import { UseSidebar } from "@/store/useSidebar";
-import menu from "./menu";
+import { useSidebar } from "@/store/sidebarContext";
 
 export default function Sidebar() {
-  const collapsed = UseSidebar((s) => s.collapsed);
-
-  console.log("Sidebar render, collapsed =", collapsed);
+  const { collapsed } = useSidebar();
 
   return (
     <aside
-      className={`
-        transition-all duration-300 border-r bg-white
-        ${collapsed ? "w-0 overflow-hidden" : "w-64"}
-      `}
+      className={`transition-all duration-300
+        ${collapsed ? "w-0 overflow-hidden" : "w-55"}`}
     >
-      <div className="p-3">
-        {menu.map((item) => (
-          <div key={item.key} className="py-2 px-2 hover:bg-gray-100 rounded-lg">
-            {item.label}
-          </div>
-        ))}
-      </div>
+      {/* isi menu sidebar */}
     </aside>
   );
 }

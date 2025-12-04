@@ -5,12 +5,13 @@ import clsx from "clsx";
 
 import { Providers } from "./providers";
 
+import { SidebarProvider } from "@/store/sidebarContext";
+
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import HeaderMenu from "@/components/headertop/headermenu";
-import ClientLayout from "./client-layout";
-
-
+import HeaderPage from "@/components/headerpage/headerpage";
+import Sidebar from "@/components/sidebar/sidebar";
 
 export const metadata: Metadata = {
   title: {
@@ -42,10 +43,31 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
-          <div className="relative flex flex-col h-screen">
+          <SidebarProvider>
+            <div className="relative flex flex-col h-screen">
             <HeaderMenu />
-            <ClientLayout>{children}</ClientLayout>
+            <div className="container mx-auto max-w-7xl px-6 py-4">
+                  
+                  {/* Page Header */}
+                  <HeaderPage title="Home" />
+            
+                  {/* Content */}
+                  <div className="flex flex-row h-[calc(100vh-112px)] overflow-hidden mt-3">
+            
+                    {/* Sidebar */}
+                    <Sidebar />
+            
+                    {/* Main Content */}
+                    <main className="flex-1 overflow-auto">
+                      <div className="border border-gray-200 dark:border-stone-800 rounded-xl p-4 mr-4">
+                        {children}
+                      </div>
+                    </main>
+                  </div>
+                </div>
           </div>
+          </SidebarProvider>
+          
         </Providers>
       </body>
     </html>
