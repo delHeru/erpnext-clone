@@ -2,25 +2,23 @@
 
 import { Button } from "@heroui/react";
 import { Menu } from "lucide-react";
+import { UseSidebar } from "@/store/useSidebar";
 
-export default function HeaderPage() {
+export default function HeaderPage({ title }: { title: string }) {
+  const toggle = UseSidebar((s) => s.toggle);
+
+  console.log("HeaderPage mounted, toggle exists?", toggle);
+
   return (
-    <div className="flex flex-row gap-2 mt-[-3px] justify-between">
-      <div className="flex flex-row items-center">
-        <div className="ml-[-8px]">
-          <Button
-            isIconOnly
-            variant="light"
-            size="sm"
-            className="!bg-transparent hover:!bg-transparent"
-            disableRipple
-          >
-            <Menu color="gray" size={19} strokeWidth="2.5" />
-          </Button>
-        </div>
-        <div className="ml-1 text-[20px] font-bold">Item</div>
+    <div className="flex flex-row justify-between items-center">
+      <div className="flex items-center gap-3">
+        <Button onClick={toggle} isIconOnly variant="light" size="sm">
+          <Menu size={18} strokeWidth={2.5} />
+        </Button>
+        <div className="text-[20px] font-semibold">{title}</div>
       </div>
-      <div className="flex flex-row items-center justify-end gap-2">
+
+      <div className="flex gap-2">
         <div>1</div>
         <div>1</div>
         <div>1</div>

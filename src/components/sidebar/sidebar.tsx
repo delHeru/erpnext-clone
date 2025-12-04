@@ -1,54 +1,27 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Home, FileText, Settings } from "lucide-react";
+import { UseSidebar } from "@/store/useSidebar";
+import menu from "./menu";
 
 export default function Sidebar() {
-  const pathname = usePathname();
+  const collapsed = UseSidebar((s) => s.collapsed);
 
-  const menu = [
-    { label: "Home", href: "/", icon: Home },
-    { label: "Documents", href: "/documents", icon: FileText },
-    { label: "Settings", href: "/settings", icon: Settings },
-  ];
+  console.log("Sidebar render, collapsed =", collapsed);
 
   return (
     <aside
-      className="
-        w-[220px]
-        border-r
-        border-default-200
-        bg-white
-        h-full
-        overflow-y-auto
-        shrink-0
-      "
+      className={`
+        transition-all duration-300 border-r bg-white
+        ${collapsed ? "w-0 overflow-hidden" : "w-64"}
+      `}
     >
-      <nav className="px-3 py-4 space-y-1 text-[13px]">
-        {menu.map((item) => {
-          const Icon = item.icon;
-          const active = pathname === item.href;
-
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`
-                flex items-center gap-2 px-3 py-2 rounded
-                transition-colors
-
-                ${active
-                  ? "bg-default-100 font-medium"
-                  : "hover:bg-default-100"}
-              `}
-            >
-              <Icon size={16} strokeWidth={1.75} />
-              {item.label}
-            </Link>
-          );
-        })}
-      </nav>
+      <div className="p-3">
+        {menu.map((item) => (
+          <div key={item.key} className="py-2 px-2 hover:bg-gray-100 rounded-lg">
+            {item.label}
+          </div>
+        ))}
+      </div>
     </aside>
   );
 }

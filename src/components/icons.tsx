@@ -2,6 +2,14 @@ import React from "react";
 
 import { IconSvgProps } from "@/types";
 
+import {
+  Home,
+  FileText,
+  Users,
+  Settings,
+  Menu,
+} from "lucide-react";
+
 export const LogoZG: React.FC<IconSvgProps> = ({
   size = 28,
   width,
@@ -23,3 +31,13 @@ export const LogoZG: React.FC<IconSvgProps> = ({
     />
   </svg>
 );
+
+export const Icons = {
+  home: Home,
+  file: FileText,
+  users: Users,
+  settings: Settings,
+  menu: Menu,
+};
+
+export type IconName = keyof typeof Icons;

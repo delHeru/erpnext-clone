@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+
 import type { Metadata, Viewport } from "next";
 import clsx from "clsx";
 
@@ -7,7 +8,9 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import HeaderMenu from "@/components/headertop/headermenu";
-import HeaderPage from "@/components/headerpage/headerpage";
+import ClientLayout from "./client-layout";
+
+
 
 export const metadata: Metadata = {
   title: {
@@ -28,6 +31,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html suppressHydrationWarning lang="en">
       <head />
@@ -40,10 +44,7 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <div className="relative flex flex-col h-screen">
             <HeaderMenu />
-            <div className="container mx-auto max-w-7xl px-6 py-4">
-              <HeaderPage />
-              {children}
-            </div>
+            <ClientLayout>{children}</ClientLayout>
           </div>
         </Providers>
       </body>
