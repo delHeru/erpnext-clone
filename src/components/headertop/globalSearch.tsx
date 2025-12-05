@@ -9,7 +9,10 @@ import { SearchIcon } from "lucide-react";
 
 export default function GlobalSearch() {
   return (
-    <div className="mr-4 mt-0 w-[315px]">
+    <div className="w-full 
+              max-w-full 
+              md:max-w-xs 
+              lg:max-w-sm mr-4 mt-0">
       <Input
         placeholder="Search or type a command (Ctrl + G)"
         className="max-w-sm"

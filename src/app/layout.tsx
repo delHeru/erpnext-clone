@@ -43,19 +43,19 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <SidebarProvider>
-            <div className="relative flex flex-col h-screen">
+            <div className="relative flex flex-col min-h-screen">
               <HeaderMenu />
-              <div className="container mx-auto max-w-7xl px-6 py-4">
+              <div className="container mx-auto max-w-7xl px-4 lg:px-6 py-4 flex-1 flex-col">
                 {/* Page Header */}
                 <HeaderPage title="Home" />
 
                 {/* Content */}
-                <div className="flex flex-row h-[calc(100vh-112px)] overflow-hidden mt-4">
+                <div className="flex flex-1 flex-col lg:flex-row gap-4 mt-4">
                   {/* Sidebar */}
                   <Sidebar />
 
                   {/* Main Content */}
-                  <main className="flex-1">
+                  <main className="flex-1 overflow-y-auto">
                     <div className="border border-gray-200 dark:border-stone-800 rounded-xl p-4">
                       {children}
                     </div>
