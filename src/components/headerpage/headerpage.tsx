@@ -1,19 +1,27 @@
 "use client";
 
 import { Button } from "@heroui/react";
-import { Menu } from "lucide-react";
+import { ChevronsLeft, ChevronsRight, Menu } from "lucide-react";
 import { useSidebar } from "@/store/sidebarContext";
+import { useState } from "react";
 
 export default function HeaderPage({ title }: { title: string }) {
-  const { toggle } = useSidebar();
-
-  console.log("HeaderPage mounted, toggle exists?", toggle);
+  const { toggle, collapsed } = useSidebar();
+  const[isHovered, setIsHovered] = useState(false);
 
   return (
     <div className="flex flex-row justify-between items-center">
       <div className="flex items-center gap-3">
-        <Button onClick={toggle} isIconOnly variant="light" size="sm">
-          <Menu size={18} strokeWidth={2.5} />
+        <Button 
+          onClick={toggle} 
+          isIconOnly 
+          variant="light" 
+          size="sm"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          >
+            {isHovered ? !collapsed ? <ChevronsLeft size={24} strokeWidth={2} /> : <ChevronsRight size={24} strokeWidth={2} /> : <Menu size={18} strokeWidth={2.5} /> }
+          
         </Button>
         <div className="text-[20px] font-semibold">{title}</div>
       </div>

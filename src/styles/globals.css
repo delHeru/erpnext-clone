@@ -1,2 +1,43 @@
 @import "tailwindcss";
 @config "../../tailwind.config.js";
+
+
+:root {
+  --heroui-background: #ffffff;
+}
+
+.dark {
+  --heroui-background: #3f3f46; /* bg-zinc-700 */
+}
+
+/* Custom Scrollbar untuk Webkit (Chrome/Safari/Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #e5e7eb; /* gray-200 */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #d1d5db; /* gray-300 */
+}
+
+/* =========================================== */
+/* KOREKSI FIX: STYLING DARK MODE (Menggunakan selector .dark) */
+/* =========================================== */
+
+/* Dark Mode: Dasar Thumb */
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #222222; /* gray-600 */ 
+}
+
+/* Dark Mode: Hover Thumb (FIX DITERAPKAN DI SINI) */
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #3b3b3b; /* gray-500 */ 
+}

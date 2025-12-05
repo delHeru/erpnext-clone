@@ -32,7 +32,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html suppressHydrationWarning lang="en">
       <head />
@@ -45,29 +44,26 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <SidebarProvider>
             <div className="relative flex flex-col h-screen">
-            <HeaderMenu />
-            <div className="container mx-auto max-w-7xl px-6 py-4">
-                  
-                  {/* Page Header */}
-                  <HeaderPage title="Home" />
-            
-                  {/* Content */}
-                  <div className="flex flex-row h-[calc(100vh-112px)] overflow-hidden mt-3">
-            
-                    {/* Sidebar */}
-                    <Sidebar />
-            
-                    {/* Main Content */}
-                    <main className="flex-1 overflow-auto">
-                      <div className="border border-gray-200 dark:border-stone-800 rounded-xl p-4 mr-4">
-                        {children}
-                      </div>
-                    </main>
-                  </div>
+              <HeaderMenu />
+              <div className="container mx-auto max-w-7xl px-6 py-4">
+                {/* Page Header */}
+                <HeaderPage title="Home" />
+
+                {/* Content */}
+                <div className="flex flex-row h-[calc(100vh-112px)] overflow-hidden mt-4">
+                  {/* Sidebar */}
+                  <Sidebar />
+
+                  {/* Main Content */}
+                  <main className="flex-1">
+                    <div className="border border-gray-200 dark:border-stone-800 rounded-xl p-4">
+                      {children}
+                    </div>
+                  </main>
                 </div>
-          </div>
+              </div>
+            </div>
           </SidebarProvider>
-          
         </Providers>
       </body>
     </html>
