@@ -35,7 +35,7 @@ export default function Sidebar() {
   return (
     <aside
       className={`
-        ${collapsed ? "w-0 overflow-hidden" : "w-55 h-screen flex flex-col"
+        ${collapsed ? "w-0" : "w-55 h-screen flex flex-col"
       }`}
     >
       {/* 2. Scrollable Content */}

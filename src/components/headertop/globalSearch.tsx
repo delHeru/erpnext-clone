@@ -9,13 +9,8 @@ import { SearchIcon } from "lucide-react";
 
 export default function GlobalSearch() {
   return (
-    <div className="w-full 
-              max-w-full 
-              md:max-w-xs 
-              lg:max-w-sm mr-4 mt-0">
       <Input
         placeholder="Search or type a command (Ctrl + G)"
-        className="max-w-sm"
         classNames={{
           base: "h-[27px] min-h-[27px]",
           inputWrapper: "h-full py-0 !min-h-0 rounded-md",
@@ -26,7 +21,6 @@ export default function GlobalSearch() {
         }
         isClearable
       />
-    </div>
 
     // <Dropdown placement="bottom-start">
     //   <DropdownTrigger>

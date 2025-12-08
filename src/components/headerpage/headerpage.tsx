@@ -10,7 +10,7 @@ export default function HeaderPage({ title }: { title: string }) {
   const[isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="flex flex-row justify-between items-center">
+    <div className="flex flex-row h-16 bg-amber-400 justify-between items-center">
       <div className="flex items-center gap-3">
         <Button 
           onClick={toggle} 

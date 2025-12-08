@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <div className="flex h-screen">
+    <div className="flex">
       main content
     </div>
   );

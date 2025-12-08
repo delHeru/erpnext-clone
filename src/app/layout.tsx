@@ -37,15 +37,15 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "min-h-screen text-foreground bg-background font-sans antialiased",
+          "text-foreground bg-background font-sans antialiased overflow-hidden",
           fontSans.variable
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <SidebarProvider>
-            <div className="relative flex flex-col min-h-screen">
+            <div className="relative flex flex-col border-b border-gray-200 dark:border-stone-800">
               <HeaderMenu />
-              <div className="container mx-auto max-w-7xl px-4 lg:px-6 py-4 flex-1 flex-col">
+              <div className="w-full mx-auto max-w-[1290px] max-[1200px]:max-w-[1090px] max-[990px]:max-w-[840px] max-[768px]:max-w-[540px]">
                 {/* Page Header */}
                 <HeaderPage title="Home" />
 
@@ -55,7 +55,7 @@ export default function RootLayout({
                   <Sidebar />
 
                   {/* Main Content */}
-                  <main className="flex-1 overflow-y-auto">
+                  <main className="flex-1">
                     <div className="border border-gray-200 dark:border-stone-800 rounded-xl p-4">
                       {children}
                     </div>
