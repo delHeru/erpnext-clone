@@ -12,7 +12,7 @@ export default function GlobalSearch() {
       <Input
         placeholder="Search or type a command (Ctrl + G)"
         classNames={{
-          base: "h-[27px] min-h-[27px]",
+          base: "h-[27px] min-h-[27px] max-w-[300px]",
           inputWrapper: "h-full py-0 !min-h-0 rounded-md",
           input: "h-full !leading-[28px] text-[13px] font-light",
         }}

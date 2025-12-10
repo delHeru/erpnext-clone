@@ -34,7 +34,7 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`
+      className={`max-[996px]:hidden
         ${collapsed ? "w-0" : "w-55 h-screen flex flex-col"
       }`}
     >

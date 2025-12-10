@@ -13,19 +13,22 @@ export default function HeaderMenu() {
   return (
     <Navbar
       classNames={{
-        base: "w-full",
+        base: "w-full border-b border-gray-200 dark:border-stone-800 bg-white",
         wrapper:
           "mx-auto max-w-[1290px] max-[1200px]:max-w-[1090px] max-[990px]:max-w-[840px] max-[768px]:max-w-[540px] px-[10px]",
       }}
       height={48}
     >
-      <NavbarContent justify="start" className="w-1.5">
-        <NavbarBrand>
+      <NavbarContent justify="start" className="max-w-8.5">
+        <NavbarBrand className="w-1">
           <LogoZG />
         </NavbarBrand>
       </NavbarContent>
-      <NavbarContent className="flex items-center gap-4" justify="end">
-        <div className="w-full mt-2 mb-2 lg:mt-0 lg:mb-0 lg:w-auto">
+      <NavbarContent justify="start" className="max-[990px]:hidden max-w-60">
+        <PetaMap />
+      </NavbarContent>
+      <NavbarContent className="" justify="end">
+        <div className="w-full flex justify-end">
           <GlobalSearch />
         </div>
         <NotifMenu />
