@@ -1,7 +1,7 @@
 "use client";
 
 import { useSidebar } from "@/store/sidebarContext";
-import { ChevronDown, ChevronRight, Menu, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 import { useState } from "react";
 import Link from "next/link";

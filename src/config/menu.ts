@@ -21,7 +21,9 @@ import {
     ClipboardList,
     Receipt,
     Heart,
-    Coins
+    Coins,
+    DollarSign,
+    DollarSignIcon
 } from 'lucide-react';
 
 export const MENU_DATA = [
@@ -29,17 +31,18 @@ export const MENU_DATA = [
         category: "PUBLIC",
         isOpen: true, // Default terbuka
         items: [
-            { name: "Home", icon: Wrench, href: "/dashboard" },
+            { name: "Home", icon: Wrench, href: "/home" },
             {
                 name: "Accounting",
                 icon: BookOpen,
+                href: "/accounting",
                 items: [
                     { name: "Payables", icon: ArrowLeft, href: "/accounting/payables" },
                     { name: "Receivables", icon: ArrowRight, href: "/accounting/receivables" },
                     { name: "Financial Reports", icon: FileText, href: "/accounting/reports" },
                 ]
             },
-            { name: "Buying", icon: ShoppingBag, href: "/buying" },
+            { name: "Buying", icon: DollarSignIcon, href: "/buying" },
             { name: "Selling", icon: CreditCard, href: "/selling" },
             { name: "Stock", icon: Package, href: "/stock" },
             { name: "Assets", icon: ShoppingBag, href: "/assets" }, // Ikon tas belanja/tote bag

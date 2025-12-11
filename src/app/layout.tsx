@@ -37,25 +37,25 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "text-foreground bg-background font-sans antialiased overflow-auto",
+          "text-foreground bg-(--heroui-background) font-sans antialiased overflow-auto",
           fontSans.variable
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <SidebarProvider>
               <HeaderMenu />
-              <div className="w-full mx-auto max-w-[1290px] max-[1200px]:max-w-[1090px] max-[990px]:max-w-[840px] max-[768px]:max-w-[540px]">
+              <div className="w-full mx-auto max-w-[1290px] max-[1200px]:max-w-[1000px] max-[990px]:max-w-[840px] max-[768px]:max-w-[540px]">
                 {/* Page Header */}
                 <HeaderPage title="Home" />
 
                 {/* Content */}
-                <div className="flex gap-4 mt-4 sticky top-[500px] border border-rose-400">
+                <div className="flex px-3">
                   {/* Sidebar */}
                   <Sidebar />
 
                   {/* Main Content */}
-                  <main className="">
-                    <div className="border border-gray-200 dark:border-stone-800 rounded-xl p-4">
+                  <main className="flex-1">
+                    <div className="w-full border border-gray-200 dark:border-stone-800 rounded-xl p-4 overflow-y-auto custom-scrollbar mr-5">
                       {children}
                     </div>
                   </main>
