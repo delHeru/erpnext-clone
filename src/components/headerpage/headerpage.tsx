@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { useSidebar } from "@/store/sidebarContext";
 import { useState } from "react";
+import SidebarMobile from "../sidebar/sidebarmobile";
 
 export default function HeaderPage({ title }: { title: string }) {
   const { toggle, collapsed } = useSidebar();
@@ -35,6 +36,7 @@ export default function HeaderPage({ title }: { title: string }) {
           size="sm"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
+          className="max-[996px]:hidden"
         >
           {isHovered ? (
             !collapsed ? (
@@ -46,6 +48,7 @@ export default function HeaderPage({ title }: { title: string }) {
             <Menu size={18} strokeWidth={2.5} />
           )}
         </Button>
+        <SidebarMobile />
         <div className="text-[20px] font-semibold ml-1">{title}</div>
       </NavbarBrand>
       <NavbarContent className="gap-2" justify="end">

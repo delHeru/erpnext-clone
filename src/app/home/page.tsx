@@ -10,7 +10,7 @@ export default function Home() {
       <div className="mx-1">
         <div className="text-lg font-medium">Your Shortcut</div>
       </div>
-      <div className="mt-2 border border-gray-300 h-50 rounded-lg items-center">
+      <div className="mt-2 border border-gray-200 dark:border-stone-800 h-50 rounded-lg items-center">
         <div className="mt-2 ml-3 text-sm">P&L</div>
       </div>
 
@@ -31,19 +31,19 @@ export default function Home() {
 
           <a className="flex items-center gap-1" href="#">
             Customer <ArrowUpRight size={14} strokeWidth={1} />
-            <Chip size="sm" className="bg-[#f3f3f3]">
+            <Chip size="sm" className="bg-[#f3f3f3] dark:text-[#171717]">
               86
             </Chip>
           </a>
           <a className="flex items-center gap-1" href="#">
             Supplier Details <ArrowUpRight size={14} strokeWidth={1} />
-            <Chip size="sm" className="bg-[#f3f3f3]">
+            <Chip size="sm" className="bg-[#f3f3f3] dark:text-[#171717]">
               25
             </Chip>
           </a>
           <a className="flex items-center gap-1" href="#">
             Lead <ArrowUpRight size={14} strokeWidth={1} />
-            <Chip size="sm" className="bg-[#f3f3f3]">
+            <Chip size="sm" className="bg-[#f3f3f3] dark:text-[#171717]">
               124
             </Chip>
           </a>

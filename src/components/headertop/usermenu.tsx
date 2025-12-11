@@ -12,7 +12,7 @@ export default function UserMenu() {
       <DropdownTrigger className="cursor-pointer">
         <Avatar
           as="button"
-          className="w-8 h-8 min-w-8 p-0 rounded-full transition-transform"
+          className="w-8 h-8 min-w-8 p-0 rounded-full transition-transform bg-[#daf0e1] text-green-700 dark:bg-[#59ba8b] dark:text-white"
           name="Heru Darmawan"
           size="sm"
         />

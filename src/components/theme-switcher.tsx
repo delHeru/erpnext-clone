@@ -3,6 +3,7 @@
 import { useTheme } from "next-themes";
 import { Button } from "@heroui/react";
 import { Sun, Moon } from "lucide-react";
+import { DarkTogggleIcon } from "./icons";
 
 export default function ThemeSwitcher() {
   const { theme, systemTheme, setTheme } = useTheme();
@@ -14,7 +15,7 @@ export default function ThemeSwitcher() {
       variant="light"
       onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
     >
-      {currentTheme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+      <DarkTogggleIcon size={22} />
     </Button>
   );
 }

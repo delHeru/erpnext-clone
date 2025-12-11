@@ -1,7 +1,7 @@
 "use client";
 
 import { Divider, Navbar, NavbarBrand, NavbarContent } from "@heroui/react";
-import { LogoZG } from "../icons";
+import { DarkTogggleIcon, LogoZG } from "../icons";
 import PetaMap from "./petamap";
 import UserMenu from "./usermenu";
 import HelpMenu from "./helpmenu";
@@ -22,6 +22,7 @@ export default function HeaderMenu() {
       <NavbarContent justify="start" className="max-w-8.5">
         <NavbarBrand className="w-1">
           <LogoZG />
+          {/* <DarkTogggleIcon /> */}
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent justify="start" className="max-[990px]:hidden max-w-60">
