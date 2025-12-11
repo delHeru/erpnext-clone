@@ -33,6 +33,7 @@ export default function MenuPage({onCloseDrawer}: MenuLinksProps) {
     const activeItem = MENU_DATA[0].items.find(
         (item) => item.href === pathname
     ) || { name: "Home" };
+    
     return (
         <div className="flex-1 pb-6 ">
             {MENU_DATA.map((section) => (

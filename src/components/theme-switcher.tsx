@@ -13,9 +13,9 @@ export default function ThemeSwitcher() {
     <Button
       isIconOnly
       variant="light"
-      onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
+      onPress={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
     >
-      <DarkTogggleIcon size={22} />
+      <DarkTogggleIcon size={24} className="text-zinc-600 dark:text-zinc-200" />
     </Button>
   );
 }
