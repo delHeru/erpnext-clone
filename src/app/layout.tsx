@@ -12,6 +12,7 @@ import { fontSans } from "@/config/fonts";
 import HeaderMenu from "@/components/headertop/headermenu";
 import HeaderPage from "@/components/headerpage/headerpage";
 import Sidebar from "@/components/sidebar/sidebar";
+import AutoTitleWatcher from "@/components/autotitlewatcher";
 
 export const metadata: Metadata = {
   title: {
@@ -44,12 +45,13 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <SidebarProvider>
               <HeaderMenu />
-              <div className="w-full mx-auto max-w-[1290px] max-[1200px]:max-w-[1000px] max-[990px]:max-w-[840px] max-[768px]:max-w-[540px]">
+              <div className="w-full h-screen mx-auto max-w-[1290px] max-[1200px]:max-w-[1000px] max-[990px]:max-w-[840px] max-[768px]:max-w-[540px]">
                 {/* Page Header */}
-                <HeaderPage title="Home" />
+                <AutoTitleWatcher />
+                <HeaderPage />
 
                 {/* Content */}
-                <div className="flex px-3">
+                <div className="flex px-3 ">
                   {/* Sidebar */}
                   <Sidebar />
 

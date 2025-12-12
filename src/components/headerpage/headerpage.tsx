@@ -4,20 +4,22 @@ import { Button, Navbar, NavbarBrand, NavbarContent } from "@heroui/react";
 import {
   ChevronsLeft,
   ChevronsRight,
-  ChevronsUpDown,
-  Ellipsis,
-  List,
   Menu,
-  Plus,
-  RefreshCcw,
 } from "lucide-react";
 import { useSidebar } from "@/store/sidebarContext";
 import { useState } from "react";
 import SidebarMobile from "../sidebar/sidebarmobile";
 
-export default function HeaderPage({ title }: { title: string }) {
+import { useHeaderStore } from "@/store/headerstore";
+import { AnimatePresence, motion } from "framer-motion";
+
+
+export default function HeaderPage() {
   const { toggle, collapsed } = useSidebar();
   const [isHovered, setIsHovered] = useState(false);
+
+  const headerTitle = useHeaderStore((state) => state.headerTitle);
+  const headerExtra = useHeaderStore((state) => state.headerExtra);
 
   return (
     <Navbar
@@ -49,31 +51,35 @@ export default function HeaderPage({ title }: { title: string }) {
           )}
         </Button>
         <SidebarMobile />
-        <div className="text-[20px] font-semibold ml-1">{title}</div>
+        <div className="text-[20px] font-semibold ml-1">
+          <AnimatePresence mode="wait">
+            <motion.h1
+              key={headerTitle}
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25 }}
+              className="font-bold text-xl"
+            >
+              {headerTitle}
+            </motion.h1>
+          </AnimatePresence>
+        </div>
       </NavbarBrand>
-      <NavbarContent className="gap-2" justify="end">
-        <Button
-          className="def-butt"
-          size="sm"
-          startContent={<List size={16} strokeWidth={1} />}
-          endContent={<ChevronsUpDown size={16} strokeWidth={1} />}
-        >
-          List View
-        </Button>
-
-        <Button className="def-butt" isIconOnly size="sm">
-          <RefreshCcw size={16} strokeWidth={1} />
-        </Button>
-        <Button className="def-butt" isIconOnly size="sm">
-          <Ellipsis size={16} strokeWidth={1} />
-        </Button>
-        <Button
-          className="bg-[#171717] text-white dark:bg-white dark:text-[#171717]"
-          size="sm"
-          startContent={<Plus size={16} />}
-        >
-          Add Item
-        </Button>
+      <NavbarContent justify="end">
+        <AnimatePresence mode="wait">
+          {headerExtra && (
+            <motion.div
+              key="header-extra"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
+              {headerExtra}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </NavbarContent>
     </Navbar>
   );

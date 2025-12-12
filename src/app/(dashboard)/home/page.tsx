@@ -1,32 +1,41 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 
 import { ArrowUpRight } from "lucide-react";
 import { Chip } from "@heroui/react";
 import { Skeleton } from "@heroui/react";
 
+import { useHeaderStore } from "@/store/headerstore";
+import ListDetailOption from "@/components/headerpage/listdetailoption";
+
 export default function Home() {
-  const [isLoaded, setIsLoaded] = React.useState(false);
+  const [isLoaded, setIsLoaded] = React.useState(true);
 
-  const toggleLoad = () => {
-    setIsLoaded(!isLoaded);
-  }
+  const setHeaderExtra = useHeaderStore((state) => state.setHeaderExtra);
+  const clearHeaderExtra = useHeaderStore((state) => state.clearHeaderExtra);
 
+  useEffect(() => {
+    setHeaderExtra(
+      <ListDetailOption />
+    );
+
+    return () => clearHeaderExtra(); // bersihkan ketika keluar page
+  }, []);
 
   return (
     <div>
       <div className="mx-1">
         <div className="text-lg font-medium flex">
           <Skeleton className="rounded-lg" isLoaded={isLoaded}>
-          Your Shortcut
+            Your Shortcut
           </Skeleton>
-          </div>
+        </div>
       </div>
       <Skeleton className="rounded-lg mt-2" isLoaded={isLoaded}>
-      <div className="mt-2 border border-gray-200 dark:border-stone-800 h-50 rounded-lg items-center">
-        <div className="mt-2 ml-3 text-sm">P&L</div>
-      </div>
+        <div className="mt-2 border border-gray-200 dark:border-stone-800 h-50 rounded-lg items-center">
+          <div className="mt-2 ml-3 text-sm">P&L</div>
+        </div>
       </Skeleton>
 
       <div className="mt-4 mx-1">

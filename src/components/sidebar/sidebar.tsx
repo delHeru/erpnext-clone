@@ -10,8 +10,8 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`max-[996px]:hidden overflow-y-auto custom-scrollbar mr-4
-        ${collapsed ? "w-0" : "w-55 h-screen flex flex-col"
+      className={`max-[996px]:hidden overflow-y-auto h-screen custom-scrollbar mr-4
+        ${collapsed ? "w-0" : "w-55 flex flex-col"
       }`}
     >
       <MenuPage onCloseDrawer={() => setIsOpen(false)} />
