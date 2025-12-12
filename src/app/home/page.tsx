@@ -1,18 +1,33 @@
 "use client";
 
 import React from "react";
+
 import { ArrowUpRight } from "lucide-react";
 import { Chip } from "@heroui/react";
+import { Skeleton } from "@heroui/react";
 
 export default function Home() {
+  const [isLoaded, setIsLoaded] = React.useState(false);
+
+  const toggleLoad = () => {
+    setIsLoaded(!isLoaded);
+  }
+
+
   return (
     <div>
       <div className="mx-1">
-        <div className="text-lg font-medium">Your Shortcut</div>
+        <div className="text-lg font-medium flex">
+          <Skeleton className="rounded-lg" isLoaded={isLoaded}>
+          Your Shortcut
+          </Skeleton>
+          </div>
       </div>
+      <Skeleton className="rounded-lg mt-2" isLoaded={isLoaded}>
       <div className="mt-2 border border-gray-200 dark:border-stone-800 h-50 rounded-lg items-center">
         <div className="mt-2 ml-3 text-sm">P&L</div>
       </div>
+      </Skeleton>
 
       <div className="mt-4 mx-1">
         <div className="grid grid-cols-4 max-[996px]:grid-cols-3 max-[750px]:grid-cols-2 max-[570px]:grid-cols-1 gap-4 mb-10 text-sm">

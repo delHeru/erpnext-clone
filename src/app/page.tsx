@@ -1,7 +1,9 @@
+import Home from "./home/page";
+
 export default function Page() {
   return (
-    <div className="flex">
-      main content
-    </div>
+    <>
+      <Home />
+    </>
   );
 }

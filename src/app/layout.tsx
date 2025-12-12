@@ -37,7 +37,7 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "text-foreground bg-(--heroui-background) font-sans antialiased overflow-auto",
+          "text-foreground bg-(--heroui-background) font-sans antialiased overflow-hidden",
           fontSans.variable
         )}
       >
@@ -54,8 +54,8 @@ export default function RootLayout({
                   <Sidebar />
 
                   {/* Main Content */}
-                  <main className="flex-1">
-                    <div className="w-full border border-gray-200 dark:border-stone-800 rounded-xl p-4 overflow-y-auto custom-scrollbar mr-5">
+                  <main className="flex-1 h-screen overflow-y-auto">
+                    <div className="w-full border border-gray-200 dark:border-stone-800 rounded-xl p-4">
                       {children}
                     </div>
                   </main>
