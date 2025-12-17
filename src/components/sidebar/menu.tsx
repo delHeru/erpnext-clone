@@ -1,150 +1,182 @@
-import { useSidebar } from "@/store/sidebarContext";
-import { ChevronDown, ChevronUp } from "lucide-react";
+'use client'
 
-import { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { ChevronDown, ChevronUp } from 'lucide-react'
+import { useMemo, useState } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import clsx from 'clsx'
 
-import clsx from "clsx";
-import { MENU_DATA } from "@/config/menu";
+import { MENU_DATA } from '@/config/menu'
 
 type MenuLinksProps = {
-  onCloseDrawer: () => void;
-};
+  onCloseDrawer: () => void
+}
 
-export default function MenuPage({onCloseDrawer}: MenuLinksProps) {
-    // const { collapsed } = useSidebar();
+export default function MenuPage({ onCloseDrawer }: MenuLinksProps) {
+  const pathname = usePathname()
 
-    const pathname = usePathname();
+  // ========================================
+  // USER TOGGLE STATE (ONLY USER ACTION)
+  // ========================================
+  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({
+    PUBLIC: true,
+  })
 
-    // State untuk mengontrol toggle menu
-    // Kita inisialisasi agar HR dan Payroll terbuka sesuai gambar referensi Anda
-    const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({
-        PUBLIC: true,
-        HR: true,
-        Accounting: true, // Saya buka sesuai gambar ke-2
-    });
+  const toggleMenu = (key: string) => {
+    setOpenMenus(prev => ({
+      ...prev,
+      [key]: !prev[key],
+    }))
+  }
 
-    const toggleMenu = (name: string) => {
-        setOpenMenus((prev) => ({ ...prev, [name]: !prev[name] }));
-    };
+  // ========================================
+  // AUTO OPEN FROM URL (DERIVED, NO STATE)
+  // ========================================
+  const autoOpenMenus = useMemo(() => {
+    const result: Record<string, boolean> = {}
 
-    // Mencari judul halaman aktif untuk ditampilkan di Header Sidebar (sebelah hamburger)
-    const activeItem = MENU_DATA[0].items.find(
-        (item) => item.href === pathname
-    ) || { name: "Home" };
-    
-    return (
-        <div className="flex-1 pb-6 ">
-            {MENU_DATA.map((section) => (
-                <div key={section.category} className="mt-0">
-                    {/* Section Header (PUBLIC) dengan Toggle */}
-                    <button
-                        onClick={() => toggleMenu(section.category)}
-                        className="flex items-center gap-1 w-full px-1 py-1 text-sm uppercase hover:text-gray-700 transition-colors cursor-pointer"
-                    >
-                        <ChevronDown size={16} strokeWidth={1.5}
-                            className={clsx(
-                                "transition-transform",
-                                !openMenus[section.category] && "-rotate-90"
+    MENU_DATA.forEach(section => {
+      section.items.forEach(item => {
+        if (item.items?.some(sub => sub.href === pathname)) {
+          result[item.name] = true
+          result[section.category] = true
+        }
+      })
+    })
+
+    return result
+  }, [pathname])
+
+  // ========================================
+  // FINAL OPEN CHECK (USER > URL > DEFAULT)
+  // ========================================
+  const isMenuOpen = (key: string) =>
+    openMenus[key] ?? autoOpenMenus[key] ?? false
+
+  return (
+    <div className="flex-1 pb-6">
+      {MENU_DATA.map(section => {
+        const isSectionOpen = isMenuOpen(section.category)
+
+        return (
+          <div key={section.category} className="mb-2">
+            {/* ============================= */}
+            {/* SECTION HEADER */}
+            {/* ============================= */}
+            <button
+              type="button"
+              onClick={() => toggleMenu(section.category)}
+              className="flex items-center gap-1 w-full px-1 py-1 text-sm uppercase"
+            >
+              <ChevronDown
+                size={16}
+                strokeWidth={1.5}
+                className={clsx(
+                  'transition-transform',
+                  isSectionOpen && 'rotate-180'
+                )}
+              />
+              {section.category}
+            </button>
+
+            {/* ============================= */}
+            {/* SECTION ITEMS */}
+            {/* ============================= */}
+            {isSectionOpen && (
+              <ul>
+                {section.items.map(item => {
+                  const hasSubmenu = !!item.items?.length
+                  const isSubOpen = isMenuOpen(item.name)
+                  const isParentActive = pathname === item.href
+
+                  return (
+                    <li key={item.name}>
+                      {/* ============================= */}
+                      {/* PARENT MENU */}
+                      {/* ============================= */}
+                      <div
+                        className={clsx(
+                          'group flex items-center justify-between px-1 py-1.5 rounded-md text-sm mr-3 mt-0.5 transition-colors',
+                          isParentActive
+                            ? 'bg-gray-100 text-gray-900 dark:bg-zinc-800 dark:text-gray-100'
+                            : 'text-gray-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 dark:text-gray-100'
+                        )}
+                      >
+                        <Link
+                          href={item.href || '#'}
+                          onClick={onCloseDrawer}
+                          className="flex items-center gap-3 flex-1"
+                        >
+                          <item.icon size={16} strokeWidth={1.5} />
+                          <span>{item.name}</span>
+                        </Link>
+
+                        {hasSubmenu && (
+                          <button
+                            type="button"
+                            onClick={e => {
+                              e.stopPropagation()
+                              toggleMenu(item.name)
+                            }}
+                            className="p-1 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700"
+                          >
+                            {isSubOpen ? (
+                              <ChevronUp size={16} strokeWidth={1.5} />
+                            ) : (
+                              <ChevronDown size={16} strokeWidth={1.5} />
                             )}
-                        />
-                        {section.category}
-                    </button>
+                          </button>
+                        )}
+                      </div>
 
-                    {/* List Menu */}
-                    {openMenus[section.category] && (
-                        <ul>
-                            {section.items.map((item) => {
-                                const isActive = pathname === item.href; // Cek URL aktif
-                                const hasSubmenu = item.items && item.items.length > 0;
-                                const isSubOpen = openMenus[item.name];
+                      {/* ============================= */}
+                      {/* SUBMENU */}
+                      {/* ============================= */}
+                      {hasSubmenu && isSubOpen && (
+                        <div className="relative ml-3 pl-3 mt-1 mb-1">
+                          <div className="absolute left-0 top-1 bottom-1 w-px bg-gray-300" />
 
-                                return (
-                                    <li key={item.name}>
-                                        {/* Parent Item */}
-                                        <div
-                                            onClick={() =>
-                                                hasSubmenu ? toggleMenu(item.name) : null
-                                            }
-                                            className={clsx(
-                                                "group flex items-center justify-between px-1 py-1.5 rounded-md cursor-pointer transition-all text-sm mr-3 mt-0.5 dark:text-gray-200",
-                                                // Active State: Background abu-abu muda, teks hitam (seperti 'Home' di gambar)
-                                                isActive && !hasSubmenu
-                                                    ? "bg-gray-100 text-gray-900"
-                                                    : "text-gray-900 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                                            )}
-                                        >
-                                            {hasSubmenu ? (
-                                                // Jika ada submenu (Dropdown)
-                                                <div className="flex items-center w-full gap-3 select-none">
-                                                    <item.icon size={16} strokeWidth={1.5} className="group-hover:text-gray-700" />
-                                                    <span className="flex-1">{item.name}</span>
-                                                    {isSubOpen ? (
-                                                        <ChevronUp size={16} strokeWidth={1.5} />
-                                                    ) : (
-                                                        <ChevronDown size={16} strokeWidth={1.5} />
-                                                    )}
-                                                </div>
-                                            ) : (
-                                                // Jika link biasa
-                                                <Link
-                                                    href={item.href || "#"}
-                                                    onClick={onCloseDrawer}
-                                                    className="flex items-center w-full gap-3"
-                                                >
-                                                    <item.icon
-                                                        size={16} strokeWidth={1.5}
-                                                        className={clsx(
-                                                            isActive
-                                                                ? "text-gray-800"
-                                                                : "text-gray-900 group-hover:text-gray-700 dark:text-gray-100"
-                                                        )}
-                                                    />
-                                                    <span>{item.name}</span>
-                                                </Link>
-                                            )}
-                                        </div>
+                          <ul className="space-y-0.5">
+                            {item.items!.map(sub => {
+                              const isSubActive =
+                                sub.href === pathname
 
-                                        {/* Submenu Children */}
-                                        {hasSubmenu && isSubOpen && (
-                                            <div className="relative ml-3 pl-3 mt-1 mb-1">
-                                                {/* Garis vertikal tipis di kiri submenu (seperti gambar HR) */}
-                                                <div className="absolute left-0 top-1 bottom-1 w-px bg-gray-300"></div>
-
-                                                <ul className="space-y-0.5">
-                                                    {item.items.map((sub) => (
-                                                        <li key={sub.name}>
-                                                            <Link
-                                                                href={sub.href || "#"}
-                                                                className="flex items-center gap-3 px-1 py-1 rounded-md text-sm hover:text-gray-900 hover:bg-zinc-100 transition-colors mr-3"
-                                                            >
-                                                                {/* Render icon jika ada, jika tidak kosongkan */}
-                                                                {sub.icon ? (
-                                                                    <sub.icon size={16} strokeWidth={1.5}
-                                                                        className={clsx(
-                                                                            isActive
-                                                                                ? "text-gray-800"
-                                                                                : "text-gray-900 group-hover:text-gray-700 dark:text-gray-100"
-                                                                        )} />
-                                                                ) : (
-                                                                    // Fallback icon jika tidak ada di data (opsional: dot/circle)
-                                                                    <div className="w-4 h-4" />
-                                                                )}
-                                                                <span>{sub.name}</span>
-                                                            </Link>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </div>
-                                        )}
-                                    </li>
-                                );
+                              return (
+                                <li key={sub.name}>
+                                  <Link
+                                    href={sub.href || '#'}
+                                    onClick={onCloseDrawer}
+                                    className={clsx(
+                                      'flex items-center gap-3 px-1 py-1 rounded-md text-sm transition-colors mr-3',
+                                      isSubActive
+                                        ? 'bg-gray-200 text-gray-900'
+                                        : 'hover:bg-zinc-100 text-gray-900'
+                                    )}
+                                  >
+                                    {sub.icon ? (
+                                      <sub.icon
+                                        size={16}
+                                        strokeWidth={1.5}
+                                      />
+                                    ) : (
+                                      <div className="w-4 h-4" />
+                                    )}
+                                    <span>{sub.name}</span>
+                                  </Link>
+                                </li>
+                              )
                             })}
-                        </ul>
-                    )}
-                </div>
-            ))}
-        </div>
-    )
+                          </ul>
+                        </div>
+                      )}
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
+          </div>
+        )
+      })}
+    </div>
+  )
 }

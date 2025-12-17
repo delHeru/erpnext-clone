@@ -22,7 +22,6 @@ import {
     Receipt,
     Heart,
     Coins,
-    DollarSign,
     DollarSignIcon
 } from 'lucide-react';
 
@@ -37,9 +36,9 @@ export const MENU_DATA = [
                 icon: BookOpen,
                 href: "/accounting",
                 items: [
-                    { name: "Payables", icon: ArrowLeft, href: "/accounting/payables" },
-                    { name: "Receivables", icon: ArrowRight, href: "/accounting/receivables" },
-                    { name: "Financial Reports", icon: FileText, href: "/accounting/reports" },
+                    { name: "Payables", icon: ArrowLeft, href: "/payables" },
+                    { name: "Receivables", icon: ArrowRight, href: "/receivables" },
+                    { name: "Financial Reports", icon: FileText, href: "reports" },
                 ]
             },
             { name: "Buying", icon: DollarSignIcon, href: "/buying" },
@@ -49,22 +48,24 @@ export const MENU_DATA = [
             {
                 name: "HR",
                 icon: Briefcase,
+                href: "/hr",
                 isOpen: true, // Terbuka sesuai Gambar 2
                 items: [
-                    { name: "Recruitment", icon: Users, href: "/hr/recruitment" },
-                    { name: "Employee Lifecycle", icon: UserPlus, href: "/hr/lifecycle" },
-                    { name: "Performance", icon: Star, href: "/hr/performance" },
-                    { name: "Shift & Attendance", icon: ClipboardList, href: "/hr/attendance" },
-                    { name: "Expense Claims", icon: Receipt, href: "/hr/expense" },
-                    { name: "Leaves", icon: Heart, href: "/hr/leaves" },
+                    { name: "Recruitment", icon: Users, href: "/recruitment" },
+                    { name: "Employee Lifecycle", icon: UserPlus, href: "/lifecycle" },
+                    { name: "Performance", icon: Star, href: "/performance" },
+                    { name: "Shift & Attendance", icon: ClipboardList, href: "/attendance" },
+                    { name: "Expense Claims", icon: Receipt, href: "/expense" },
+                    { name: "Leaves", icon: Heart, href: "/leaves" },
                 ]
             },
             {
                 name: "Payroll",
                 icon: Wallet,
+                href: "/payroll",
                 items: [
-                    { name: "Salary Payout", icon: Coins, href: "/payroll/payout" },
-                    { name: "Tax & Benefits", icon: PieChart, href: "/payroll/tax" },
+                    { name: "Salary Payout", icon: Coins, href: "/payout" },
+                    { name: "Tax & Benefits", icon: PieChart, href: "/tax" },
                 ]
             },
             { name: "Manufacturing", icon: Factory, href: "/manufacturing" },
