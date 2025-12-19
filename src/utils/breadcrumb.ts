@@ -1,33 +1,61 @@
-import { ROUTES } from '@/config/routes'
+// utils/breadcrumb.ts
+import { ROUTES, type RouteMeta } from '@/config/routes'
 
-type BreadcrumbItem = {
+export type BreadcrumbItem = {
   label: string
   href?: string
 }
 
+function matchDynamic(routePath: string, pathname: string) {
+  if (!routePath.includes('[')) return null
+
+  const regex = new RegExp(
+    '^' +
+      routePath
+        .replace(/\[.*?\]/g, '([^/]+)')
+        .replace(/\//g, '\\/') +
+      '$'
+  )
+
+  return pathname.match(regex)
+}
+
 export function getBreadcrumb(pathname: string): BreadcrumbItem[] {
-  // 1️⃣ cari route yang PERSIS dengan pathname
-  const currentRoute = ROUTES.find(r => r.path === pathname)
-
-  if (!currentRoute) return []
-
   const items: BreadcrumbItem[] = []
 
-  let route = currentRoute
+  let current: RouteMeta | undefined
+  let dynamicValue: string | undefined
 
-  // 2️⃣ naik ke parent
-  while (route) {
+  // exact match
+  current = ROUTES.find(r => r.path === pathname)
+
+  // dynamic match
+  if (!current) {
+    for (const route of ROUTES) {
+      const match = matchDynamic(route.path, pathname)
+      if (match) {
+        current = route
+        dynamicValue = match[1]
+        break
+      }
+    }
+  }
+
+  if (!current) return items
+
+  while (current) {
+    const parentPath: string | undefined = current.parent // ✅ EXPLICIT TYPE
+
     items.unshift({
-      label: route.label,
-      href: route.path,
+      label:
+        current.dynamicLabel && dynamicValue
+          ? dynamicValue
+          : current.label,
+      href: current.path.includes('[') ? undefined : current.path,
     })
 
-    if (!route.parent) break
-
-    const parent = ROUTES.find(r => r.path === route.parent)
-    if (!parent) break
-
-    route = parent
+    if (!parentPath) break
+    current = ROUTES.find(r => r.path === parentPath)
   }
 
   return items

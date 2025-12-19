@@ -149,8 +149,8 @@ export default function MenuPage({ onCloseDrawer }: MenuLinksProps) {
                                     className={clsx(
                                       'flex items-center gap-3 px-1 py-1 rounded-md text-sm transition-colors mr-3',
                                       isSubActive
-                                        ? 'bg-gray-200 text-gray-900'
-                                        : 'hover:bg-zinc-100 text-gray-900'
+                                        ? 'bg-gray-200 text-gray-900 dark:bg-zinc-800 dark:text-gray-100'
+                                        : 'hover:bg-zinc-100 text-gray-900 dark:hover:bg-zinc-800 dark:text-gray-100'
                                     )}
                                   >
                                     {sub.icon ? (

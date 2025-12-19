@@ -9,9 +9,7 @@ export default function PetaMap() {
   const pathname = usePathname()
   const items = getBreadcrumb(pathname)
 
-  console.log('pathname:', pathname)
-console.log('breadcrumb items:', items)
-
+  console.log('pathname real:', pathname)
   // 🔴 RULE: TIDAK TAMPIL JIKA HANYA 1 LEVEL
   if (!items || items.length < 2) return null
 
@@ -23,13 +21,13 @@ console.log('breadcrumb items:', items)
         return (
           <BreadcrumbItem key={index}>
             {isLast || !item.href ? (
-              <span className="font-medium text-gray-900">
+              <span className="font-medium text-gray-500 dark:text-gray-400">
                 {item.label}
               </span>
             ) : (
               <Link
                 href={item.href}
-                className="text-gray-500 hover:text-gray-900"
+                className="text-gray-900 dark:text-gray-100"
               >
                 {item.label}
               </Link>

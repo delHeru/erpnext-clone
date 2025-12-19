@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
+import Link from "next/link";
 
 import { ArrowUpRight } from "lucide-react";
 import { Chip } from "@heroui/react";
@@ -40,9 +41,9 @@ export default function Home() {
 
       <div className="mt-4 mx-1">
         <div className="grid grid-cols-4 max-[996px]:grid-cols-3 max-[750px]:grid-cols-2 max-[570px]:grid-cols-1 gap-4 mb-10 text-sm">
-          <a className="flex items-center gap-1" href="#">
+          <Link className="flex items-center gap-1" href="/item">
             Item <ArrowUpRight size={14} strokeWidth={1} />
-          </a>
+          </Link>
           <a className="flex items-center gap-1" href="#">
             Supplier <ArrowUpRight size={14} strokeWidth={1} />
           </a>

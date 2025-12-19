@@ -38,7 +38,7 @@ export const MENU_DATA = [
                 items: [
                     { name: "Payables", icon: ArrowLeft, href: "/payables" },
                     { name: "Receivables", icon: ArrowRight, href: "/receivables" },
-                    { name: "Financial Reports", icon: FileText, href: "reports" },
+                    { name: "Financial Reports", icon: FileText, href: "/reports" },
                 ]
             },
             { name: "Buying", icon: DollarSignIcon, href: "/buying" },

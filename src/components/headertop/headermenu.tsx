@@ -1,7 +1,7 @@
 "use client";
 
 import { Divider, Navbar, NavbarBrand, NavbarContent } from "@heroui/react";
-import { DarkTogggleIcon, LogoZG } from "../icons";
+import { LogoZG } from "../icons";
 import PetaMap from "./petamap";
 import UserMenu from "./usermenu";
 import HelpMenu from "./helpmenu";
