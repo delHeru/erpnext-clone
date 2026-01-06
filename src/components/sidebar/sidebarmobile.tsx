@@ -7,7 +7,12 @@ import {
   Button,
 } from "@heroui/react";
 
+import { useSidebarMode } from "@/store/sidebarModeContext";
+
 import MenuPage from "./menu";
+import FilterSidebar from "./filtersidebar";
+import DetailSidebar from "./detailsidebar";
+
 import React from "react";
 import { useState } from "react";
 import { ChevronsLeft, ChevronsRight, Menu } from "lucide-react";
@@ -16,6 +21,20 @@ import { ChevronsLeft, ChevronsRight, Menu } from "lucide-react";
 export default function SidebarMobile() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isHovered, setIsHovered] = useState(false);
+
+  const { mode } = useSidebarMode();
+
+  const renderContent = () => {
+    switch (mode) {
+      case "list":
+        return <FilterSidebar />;
+      case "detail":
+        return <DetailSidebar />;
+      case "menu":
+      default:
+        return <MenuPage onCloseDrawer={() => setIsOpen(false)} />;
+    }
+  };
 
   return (
     <>

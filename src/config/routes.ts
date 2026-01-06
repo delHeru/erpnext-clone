@@ -23,6 +23,9 @@ export const ROUTES: RouteMeta[] = [
     parent: '/accounting',
   },
 
+  { path: '/buying', label: 'Buying' },
+
+  
   // ===== STOCK =====
   { path: '/stock', label: 'Stock' },
   { path: '/item', label: 'Item', parent: '/stock' },

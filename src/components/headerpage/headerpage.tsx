@@ -26,9 +26,10 @@ export default function HeaderPage() {
       classNames={{
         base: "w-full top-12 h-14 z-6 bg-(--heroui-background) dark:bg-(--heroui-background)",
         wrapper:
-          "mx-auto max-w-[1290px] max-[1200px]:max-w-[1090px] max-[990px]:max-w-[840px] max-[768px]:max-w-[540px] px-2",
+          "mx-auto max-w-[1290px] max-[1200px]:max-w-[1090px] max-[990px]:max-w-[840px] max-[768px]:max-w-[540px] px-2 pr-3",
       }}
       height={60}
+      shouldHideOnScroll={true}
     >
       <NavbarBrand>
         <Button

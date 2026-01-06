@@ -7,22 +7,19 @@ import { ArrowUpRight } from "lucide-react";
 import { Chip } from "@heroui/react";
 import { Skeleton } from "@heroui/react";
 
-import { useHeaderStore } from "@/store/headerstore";
-import ListDetailOption from "@/components/headerpage/listdetailoption";
-
 export default function Home() {
   const [isLoaded, setIsLoaded] = React.useState(true);
 
-  const setHeaderExtra = useHeaderStore((state) => state.setHeaderExtra);
-  const clearHeaderExtra = useHeaderStore((state) => state.clearHeaderExtra);
+  // const setHeaderExtra = useHeaderStore((state) => state.setHeaderExtra);
+  // const clearHeaderExtra = useHeaderStore((state) => state.clearHeaderExtra);
 
-  useEffect(() => {
-    setHeaderExtra(
-      <ListDetailOption />
-    );
+  // useEffect(() => {
+  //   setHeaderExtra(
+  //     <ListDetailOption />
+  //   );
 
-    return () => clearHeaderExtra(); // bersihkan ketika keluar page
-  }, []);
+  //   return () => clearHeaderExtra(); // bersihkan ketika keluar page
+  // }, []);
 
   return (
     <div>

@@ -3,7 +3,7 @@
 import { Breadcrumbs, BreadcrumbItem } from '@heroui/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { getBreadcrumb } from '@/utils/breadcrumb'
+import { getBreadcrumb } from '@/helpers/breadcrumb'
 
 export default function PetaMap() {
   const pathname = usePathname()

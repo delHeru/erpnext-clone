@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useHeaderStore } from "@/store/headerstore";
-import { routeToTitle } from "@/utils/routetotitle";
+import { routeToTitle } from "@/helpers/routetotitle";
 
 export default function AutoTitleWatcher() {
   const pathname = usePathname();

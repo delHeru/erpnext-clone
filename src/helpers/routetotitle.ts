@@ -1,4 +1,4 @@
-import { getBreadcrumb } from '@/utils/breadcrumb'
+import { getBreadcrumb } from '@/helpers/breadcrumb'
 
 export function routeToTitle(pathname: string): string {
   const items = getBreadcrumb(pathname)
