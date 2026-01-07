@@ -17,7 +17,7 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`max-[996px]:hidden overflow-y-auto h-screen custom-scrollbar mr-4
+      className={`max-[996px]:hidden h-screen mr-4 overflow-y-auto custom-scrollbar
         ${collapsed ? "w-0" : "w-55 flex flex-col flex-shrink-0"
       }`}
     >

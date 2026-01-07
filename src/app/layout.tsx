@@ -39,7 +39,7 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "text-foreground bg-(--heroui-background) font-sans antialiased overflow-y-auto",
+          "text-foreground bg-(--heroui-background) font-sans antialiased",
           fontSans.variable
         )}
       >
@@ -48,7 +48,7 @@ export default function RootLayout({
             <SidebarModeProvider>
               <div className="flex flex-col">
                 <HeaderMenu />
-              <div className="w-full h-[100v] mx-auto max-w-[1290px] max-[1200px]:max-w-[1000px] max-[990px]:max-w-[840px] max-[768px]:max-w-[540px]">
+              <div className="w-full mx-auto max-w-[1290px] max-[1200px]:max-w-[1000px] max-[990px]:max-w-[840px] max-[768px]:max-w-[540px]">
                 {/* Page Header */}
                 <AutoTitleWatcher />
                 <HeaderPage />
