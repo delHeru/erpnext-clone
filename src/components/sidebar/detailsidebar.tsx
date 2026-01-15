@@ -3,7 +3,7 @@
 export default function DetailSidebar(){
     return(
         <div>
-            Filter Sidebar
+            Detail Sidebar
         </div>
     )
 }

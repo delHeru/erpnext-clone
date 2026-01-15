@@ -60,7 +60,7 @@ export default function RootLayout({
                   <Sidebar />
 
                   {/* Main Content */}
-                  <main className="flex-1">
+                  <main className="flex-1 h-screen overflow-y-auto custom-scrollbar pr-4">
                     <div className="w-full border border-gray-200 dark:border-stone-800 rounded-xl p-4">
                       {children}
                     </div>

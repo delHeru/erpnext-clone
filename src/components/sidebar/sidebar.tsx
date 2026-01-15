@@ -24,8 +24,7 @@ export default function Sidebar() {
       {mode === "menu" && <MenuPage onCloseDrawer={() => setIsOpen(false)} />}
       {mode === "list" && <FilterSidebar />}
       {mode === "detail" && <DetailSidebar />}
-      
-      
+
     </aside>
   );
 }

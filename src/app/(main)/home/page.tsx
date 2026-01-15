@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 
 import { ArrowUpRight } from "lucide-react";
@@ -31,7 +31,7 @@ export default function Home() {
         </div>
       </div>
       <Skeleton className="rounded-lg mt-2" isLoaded={isLoaded}>
-        <div className="mt-2 border border-gray-200 dark:border-stone-800 h-50 rounded-lg items-center">
+        <div className="mt-2 border border-gray-200 dark:border-stone-800 h-72 rounded-lg items-center">
           <div className="mt-2 ml-3 text-sm">P&L</div>
         </div>
       </Skeleton>
