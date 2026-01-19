@@ -14,6 +14,7 @@ import HeaderPage from "@/components/headerpage/headerpage";
 import Sidebar from "@/components/sidebar/sidebar";
 import AutoTitleWatcher from "@/components/autotitlewatcher";
 import { SidebarModeProvider } from "@/store/sidebarModeContext";
+import LayoutShell from "./layoutshell";
 
 export const metadata: Metadata = {
   title: {
@@ -34,6 +35,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html suppressHydrationWarning lang="en">
       <head />
@@ -46,29 +48,7 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <SidebarProvider>
             <SidebarModeProvider>
-              <div className="flex flex-col">
-                <HeaderMenu />
-              <div className="w-full mx-auto max-w-[1290px] max-[1200px]:max-w-[1000px] max-[990px]:max-w-[840px] max-[768px]:max-w-[540px]">
-                {/* Page Header */}
-                <AutoTitleWatcher />
-                <HeaderPage />
-
-                {/* Content */}
-                <div className="flex px-3">
-                  {/* Sidebar */}
-                  
-                  <Sidebar />
-
-                  {/* Main Content */}
-                  <main className="flex-1 h-screen overflow-y-auto custom-scrollbar pr-4">
-                    <div className="w-full border border-gray-200 dark:border-stone-800 rounded-xl p-4">
-                      {children}
-                    </div>
-                  </main>
-                </div>
-              </div>
-              </div>
-              
+              <LayoutShell>{children}</LayoutShell>
             </SidebarModeProvider>
           </SidebarProvider>
         </Providers>

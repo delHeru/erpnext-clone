@@ -1,18 +1,20 @@
 "use client";
 
 import { useSidebar } from "@/store/sidebarContext";
-import { useSidebarMode } from "@/store/sidebarModeContext";
+import SidebarContent from "./sidebarcontent";
+// import { useSidebarMode } from "@/store/sidebarModeContext";
 
-import MenuPage from "./menu";
-import React from "react";
-import FilterSidebar from "./filtersidebar";
-import DetailSidebar from "./detailsidebar";
+// import MenuPage from "./menu";
+// import React from "react";
+// import FilterSidebar from "./filtersidebar";
+// import DetailSidebar from "./detailsidebar";
+
+type SidebarProps = {
+  className?: string;
+};
 
 export default function Sidebar() {
   const { collapsed } = useSidebar();
-  const { mode } = useSidebarMode();
-
-  const [isOpen, setIsOpen] = React.useState(false);
   
 
   return (
@@ -21,10 +23,7 @@ export default function Sidebar() {
         ${collapsed ? "w-0" : "w-55 flex flex-col flex-shrink-0"
       }`}
     >
-      {mode === "menu" && <MenuPage onCloseDrawer={() => setIsOpen(false)} />}
-      {mode === "list" && <FilterSidebar />}
-      {mode === "detail" && <DetailSidebar />}
-
+      <SidebarContent />
     </aside>
   );
 }
